@@ -10,7 +10,6 @@ class Matrix {
  private:
   z **mat;
   int row, col;
-
  public:
   ~Matrix();
   int gRow() const;
@@ -30,7 +29,6 @@ class Matrix {
   friend bool operator!=(const Matrix<Vec1> &m1, const Matrix<Vec1> &m2);
   z *operator[](size_t i) const;
 };
-
 template <class z>
 Matrix<z>::~Matrix() {
   for (int i = 0; i < row; i++) {
@@ -42,12 +40,10 @@ template <class z>
 int Matrix<z>::gRow() const {
   return row;
 }
-
 template <class z>
 int Matrix<z>::gCol() const {
   return col;
 }
-
 template <class z>
 Matrix<z>::Matrix(int rows_m, int cols_m) {
   row = rows_m;
@@ -57,7 +53,6 @@ Matrix<z>::Matrix(int rows_m, int cols_m) {
   for (int i = 0; i < row; i++)
     for (int j = 0; j < cols_m; j++) mat[i][j] = 0;
 }
-
 template <class z>
 Matrix<z>::Matrix(const Matrix &cp) {
   row = cp.row;
@@ -67,7 +62,6 @@ Matrix<z>::Matrix(const Matrix &cp) {
   for (int i = 0; i < row; i++)
     for (int j = 0; j < col; j++) mat[i][j] = cp.mat[i][j];
 }
-
 template <class z>
 z *Matrix<z>::operator[](size_t i) const {
   return mat[i];
@@ -123,7 +117,6 @@ Matrix<z> Matrix<z>::operator*(Matrix &m2) {
   }
   return resul;
 }
-
 template <class z>
 bool operator==(const Matrix<z> &m1, const Matrix<z> &m2) {
   if (std::is_floating_point<z>::value) {
@@ -133,8 +126,8 @@ bool operator==(const Matrix<z> &m1, const Matrix<z> &m2) {
           return false;
         }
       }
-    }                                                                                                                      
-    return true;
+    }
+	return true;
   } else {
     for (int i = 0; i < m1.gRow(); i++) {
       for (int j = 0; j < m1.gCol(); j++) {

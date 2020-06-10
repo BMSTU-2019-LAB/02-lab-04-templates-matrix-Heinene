@@ -208,4 +208,4 @@ Matrix<z> Matrix<z>::Inversion() {
   }
   return invT;
 }
-#endif  // INCLUDE_MATRIX_HPP_ 
+#endif  // INCLUDE_MATRIX_HPP_

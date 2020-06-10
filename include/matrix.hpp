@@ -127,7 +127,7 @@ bool operator==(const Matrix<z> &m1, const Matrix<z> &m2) {
         }
       }
     }
-	return true;
+  return true;
   } else {
     for (int i = 0; i < m1.gRow(); i++) {
       for (int j = 0; j < m1.gCol(); j++) {

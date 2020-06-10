@@ -1,4 +1,4 @@
-// Copyright 2018 Your Name <your_email>
+// Copyright 2018 Your Name <herteret@gmail.com>
 
 #include <gtest/gtest.h>
 
@@ -41,12 +41,12 @@ TEST(Matrix, Add) {
 
     Matrix<int> c = m;
 
-    Matrix<int> s = m + c
+    Matrix<int> s = m + c;
     Matrix<int> s2 = c + c;
     EXPECT_EQ(s2, s);
 
-    ASSERT_EQ(s.Rows(), 2);
-    ASSERT_EQ(s.Cols(), 3);
+    ASSERT_EQ(s.gRow(), 2);
+    ASSERT_EQ(s.gCol(), 3);
     EXPECT_EQ(s[0][0], 2);
     EXPECT_EQ(s[0][1], 4);
     EXPECT_EQ(s[1][0], 6);
@@ -62,8 +62,8 @@ TEST(Matrix, AddEmpty) {
 
     Matrix<float> s = m + c;
 
-    EXPECT_EQ(s.Rows(), 0);
-    EXPECT_EQ(s.Cols(), 0);
+    EXPECT_EQ(s.gRow(), 0);
+    EXPECT_EQ(s.gCol(), 0);
 }
 
 TEST(Matrix, Sub) {
@@ -76,8 +76,8 @@ TEST(Matrix, Sub) {
     auto c = m;
     auto s = m - c;
 
-    ASSERT_EQ(s.Rows(), 2);
-    ASSERT_EQ(s.Cols(), 2);
+    ASSERT_EQ(s.gRow(), 2);
+    ASSERT_EQ(s.gCol(), 2);
     EXPECT_EQ(s[0][0], 0);
     EXPECT_EQ(s[0][1], 0);
     EXPECT_EQ(s[1][0], 0);
@@ -91,8 +91,8 @@ TEST(Matrix, SubEmpty) {
 
     auto s = m - c;
 
-    EXPECT_EQ(s.Rows(), 0);
-    EXPECT_EQ(s.Cols(), 0);
+    EXPECT_EQ(s.gRow(), 0);
+    EXPECT_EQ(s.gCol(), 0);
 }
 
 TEST(Matrix, Mult) {
@@ -123,8 +123,8 @@ TEST(Matrix, Mult) {
     c[1][1] = 1;
     auto s = m * c;
 
-    ASSERT_EQ(s.Rows(), 3);
-    ASSERT_EQ(s.Cols(), 2);
+    ASSERT_EQ(s.gRow(), 3);
+    ASSERT_EQ(s.gCol(), 2);
     /*
     2 0
     2 2
@@ -138,25 +138,25 @@ TEST(Matrix, Mult) {
     EXPECT_EQ(s[2][1], 1);
 
     auto e = c * m;
-    ASSERT_EQ(0, e.Rows());
-    ASSERT_EQ(0, e.Cols());
+    ASSERT_EQ(0, e.gRow());
+    ASSERT_EQ(0, e.gCol());
 }
 
 TEST(Matrix, Inverse) {
     Matrix<double> m(5, 5);
 
-    for (size_t i = 0; i < m.Rows(); ++i) {
-        for (size_t j = 0; j < m.Rows(); ++j) {
+    for (int i = 0; i < m.gCol(); ++i) {
+        for (int j = 0; j < m.gRow(); ++j) {
             m[i][j] = 1 + (i * j) % 7;
         }
     }
 
     Matrix<double> I(5, 5);
-    for (size_t i = 0; i < m.Rows(); ++i) {
+    for (int i = 0; i < m.gRow(); ++i) {
         I[i][i] = 1.;
     }
 
-    auto i = m.Inverse();
+    auto i = m.Inversion();
     EXPECT_EQ(I, i * m);
     EXPECT_EQ(I, m * i);
     EXPECT_EQ(m * i, i * m);

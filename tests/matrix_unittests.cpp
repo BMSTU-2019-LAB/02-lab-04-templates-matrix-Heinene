@@ -160,4 +160,4 @@ TEST(Matrix, Inverse) {
     EXPECT_EQ(I, i * m);
     EXPECT_EQ(I, m * i);
     EXPECT_EQ(m * i, i * m);
-}
+} 
